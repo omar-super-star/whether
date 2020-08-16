@@ -62,8 +62,10 @@ function updatepage(new_temp,content){
 //events
 btn.addEventListener("click",()=>{
   const zipcode=document.getElementById('zip').value;
-  if (zipcode !== null){
+  console.log(typeof zipcode)
+  if (typeof zipcode === `string`){
+    console.log("please enter the zip code")
+  }else{  
     console.log(zipcode);
-    getdata(url,zipcode,api_key);
-  }
+    getdata(url,zipcode,api_key);}
 })
