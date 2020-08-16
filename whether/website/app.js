@@ -30,7 +30,7 @@ console.log(data)
   try{
      const newdata = await respon.json();
      console.log(newdata);
-     updatepage(newdata["main"]["temp"],newdata)
+     updatepage(newdata["temp"],newdata["cont"])
 }catch(error){
       console.log(error)
   }
@@ -38,28 +38,32 @@ console.log(data)
 
 
 const getdata=async (url,zip,api)=>{
+try{ 
   const respon= await fetch(url+zip+api)
+}catch(error){
+  console.log("work good")
+  postData("/recive_data","bad")
+};
   try{
      const newdata = await respon.json();
      postData("/recive_data",newdata)
-}catch(error){
+  }catch(error){
       console.log(error)
-  }
+  };
+
 };
 
 function updatepage(new_temp,content){
-  console.log("update ok")
    temp.innerHTML=new_temp;
-   console.log(new_temp)
    date.innerHTML=newDate;
-   console.log(newDate)
    content.innerHTML=content;
-   console.log("update finfish")
 }
 
 //events
 btn.addEventListener("click",()=>{
   const zipcode=document.getElementById('zip').value;
-  console.log(zipcode);
-  getdata(url,zipcode,api_key);
+  if (zipcode !== null){
+    console.log(zipcode);
+    getdata(url,zipcode,api_key);
+  }
 })
