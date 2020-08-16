@@ -18,15 +18,20 @@ app.use(cors())
 app.use(express.static('website'));
 
 app.get("/",(req,res)=>{
-  res.send()
+  res.send("start")
   console.log(req)
 });
 let data=[]
 app.post("/recive_data",(req,res)=>{
-  data.push(req.body)
+  respond=req.body
+  console.log(respond)
+  if (respond === "bad"){
+    res.send({cont:"not found try another code " ,temp:"none"})
+  }
+  else{
+  data.push(respond)
   console.log(data);
-  res.json(req.body);
-
+  res.send({temp:`${respond["main"]["temp"]}`,cont:`${respond}`});}
 });
 app.listen(8000,()=>console.log("server run"))
 // Setup Server
