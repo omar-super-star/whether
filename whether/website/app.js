@@ -38,32 +38,36 @@ console.log(data)
 
 
 const getdata=async (url,zip,api)=>{
-try{ 
-  const respon= await fetch(url+zip+api)
-}catch(error){
-  console.log("work good")
-  postData("/recive_data","bad")
-};
   try{
-     const newdata = await respon.json();
-     postData("/recive_data",newdata)
+    let respon= await fetch(url+zip+api)
+    console.log(respon.status)
+    if (respon.status==404){
+      temp.innerHTML=`not defiend`;
+      date.innerHTML=newDate;
+      content.innerHTML=`content`;    
+    }
+    if (respon.status==200){
+       const newdata = await respon.json();
+       postData("/recive_data",newdata)
+    }
   }catch(error){
-      console.log(error)
+    temp.innerHTML=`not defiend`;
+    date.innerHTML=newDate;
+    content.innerHTML=`content`;    
+    console.log(error)
   };
-
 };
 
-function updatepage(new_temp,content){
+function updatepage(new_temp,cont){
    temp.innerHTML=new_temp;
    date.innerHTML=newDate;
-   content.innerHTML=content;
+   content.innerHTML=cont; 
 }
 
 //events
 btn.addEventListener("click",()=>{
   const zipcode=document.getElementById('zip').value;
-  console.log(typeof zipcode)
-  if (typeof zipcode === `string`){
+  if (zipcode === ` `){
     console.log("please enter the zip code")
   }else{  
     console.log(zipcode);
