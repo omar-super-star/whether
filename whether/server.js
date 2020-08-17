@@ -31,7 +31,7 @@ app.post("/recive_data",(req,res)=>{
   else{
   data.push(respond)
   console.log(data);
-  res.send({temp:`${respond["main"]["temp"]}`,cont:`${respond}`});}
+  res.send({temp:`${respond["main"]["temp"]}`,cont:`${respond["weather"][0]["main"]}`});}
 });
 app.listen(8000,()=>console.log("server run"))
 // Setup Server
