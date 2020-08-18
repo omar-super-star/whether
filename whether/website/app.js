@@ -61,7 +61,7 @@ const getdata=async (url,zip,api)=>{
 function updatepage(new_temp,cont){
    temp.innerHTML=new_temp;
    date.innerHTML=newDate;
-   content.innerHTML=content.value; 
+   content.innerHTML=feelings.value; 
 }
 
 //events
