@@ -23,8 +23,7 @@ app.get("/",(req,res)=>{
 });
 let data=[]
 app.post("/recive_data",(req,res)=>{
-  respond=req.body
-  console.log(respond)
+  respond=req.body;
   if (respond === "bad"){
     res.send({cont:"not found try another code " ,temp:"none"})
   }
@@ -33,5 +32,5 @@ app.post("/recive_data",(req,res)=>{
   console.log(data);
   res.send({temp:`${respond["main"]["temp"]}`,cont:`${respond["weather"][0]["main"]}`});}
 });
-app.listen(8000,()=>console.log("server run"))
+app.listen(8000,()=>console.log("server run at localhost:8000"))
 // Setup Server
